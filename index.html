@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>三江口隐江宿 · 四种人群游玩体验看板</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;background:#f5f0e8;color:#3a3028;line-height:1.7;}
+
+  /* Header */
+  .hero{background:linear-gradient(135deg,#1a3c2a 0%,#2d5a3f 30%,#4a7c59 60%,#6b9e78 100%);color:#fff;text-align:center;padding:40px 20px 30px;position:relative;overflow:hidden;}
+  .hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><path d="M0 100 Q 50 70 100 100 T 200 100" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="0.5"/></svg>');opacity:0.3;}
+  .hero h1{font-size:clamp(24px,5vw,40px);font-weight:700;letter-spacing:2px;position:relative;z-index:1;}
+  .hero .sub{font-size:clamp(13px,2.5vw,17px);margin-top:8px;opacity:0.85;position:relative;z-index:1;}
+  .hero .tagline{margin-top:14px;font-size:14px;opacity:0.7;font-style:italic;position:relative;z-index:1;}
+
+  /* Tabs */
+  .tabs{display:flex;justify-content:center;gap:6px;padding:18px 12px 0;background:#f5f0e8;position:sticky;top:0;z-index:10;flex-wrap:wrap;}
+  .tab{padding:10px 20px;border-radius:24px;border:none;font-size:15px;font-weight:600;cursor:pointer;transition:all 0.25s;background:#fff;color:#5a4e3c;box-shadow:0 1px 4px rgba(0,0,0,0.06);white-space:nowrap;}
+  .tab.active{background:#1a3c2a;color:#fff;box-shadow:0 4px 12px rgba(26,60,42,0.3);}
+  .tab:hover:not(.active){background:#e8e0d4;}
+
+  /* Panels */
+  .panel{display:none;max-width:900px;margin:0 auto;padding:20px 16px 40px;}
+  .panel.active{display:block;}
+
+  /* Section intro */
+  .intro{text-align:center;margin-bottom:24px;}
+  .intro .icon-row{font-size:36px;margin-bottom:6px;}
+  .intro h2{font-size:clamp(20px,4vw,28px);color:#1a3c2a;margin-bottom:6px;font-weight:700;}
+  .intro .hook{font-size:15px;color:#6b5e4e;line-height:1.6;max-width:600px;margin:0 auto;}
+
+  /* Cards */
+  .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;}
+  .card{background:#fff;border-radius:14px;padding:18px 16px;box-shadow:0 2px 8px rgba(0,0,0,0.05);transition:transform 0.2s,box-shadow 0.2s;border-left:4px solid transparent;}
+  .card:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,0.1);}
+  .card .emoji{font-size:28px;margin-bottom:6px;display:block;}
+  .card h4{font-size:16px;color:#1a3c2a;margin-bottom:4px;font-weight:700;}
+  .card p{font-size:13px;color:#6b5e4e;line-height:1.6;}
+
+  /* Card border colors */
+  .silver .card{border-left-color:#b8945c;}
+  .family .card{border-left-color:#e8923a;}
+  .team .card{border-left-color:#3a6fb8;}
+.leisure .card{border-left-color:#c47ab0;}
+
+  /* Highlight banner */
+  .highlight{background:linear-gradient(135deg,#fdf2e0,#fef9f0);border-radius:12px;padding:16px 20px;margin-bottom:20px;text-align:center;font-size:14px;color:#8b6a3d;border:1px dashed #d4b87a;line-height:1.7;}
+
+  /* Footer */
+  .footer{text-align:center;padding:24px 16px 32px;color:#a89a82;font-size:12px;}
+
+  @media(max-width:600px){
+    .cards{grid-template-columns:1fr;gap:10px;}
+    .tab{padding:8px 14px;font-size:13px;}
+    .card{padding:14px 12px;}
+    .card h4{font-size:15px;}
+    .card p{font-size:12px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>三江口隐江宿</h1>
+  <div class="sub">邕江源头 · 江畔度假民宿</div>
+  <div class="tagline">一江水，三江口，千年宋村，百种玩法</div>
+</div>
+
+<div class="tabs">
+  <button class="tab active" onclick="switchPanel(0)">银龄康养</button>
+  <button class="tab" onclick="switchPanel(1)">亲子时光</button>
+  <button class="tab" onclick="switchPanel(2)">团建狂欢</button>
+  <button class="tab" onclick="switchPanel(3)">休闲度假</button>
+</div>
+
+<!-- ============ 银龄 ============ -->
+<div class="panel active silver" id="panel0">
+  <div class="intro">
+    <div class="icon-row">☀️</div>
+    <h2>银龄康养 · 岁月缓缓流</h2>
+    <div class="hook">不赶路，只感受路。在三江口找回被遗忘的"慢"，让邕江的风替您按下暂停键。</div>
+  </div>
+  <div class="highlight">特别推荐：入住即享江畔垂钓平台免费使用权 &middot; 每间客房标配造价2万+的高端床垫，一夜安眠胜过十全大补</div>
+  <div class="cards">
+    <div class="card">
+      <span class="emoji">🎣</span>
+      <h4>邕江畔垂钓 — 一杆钓三江</h4>
+      <p>专属江畔垂钓平台，左江右江汇流处下竿，通水通电配休息椅。鱼不鱼的不重要，光是坐在那里，就赢了城里一整年的焦虑。</p>
+    </div>
+    <div class="card">
+      <span class="emoji">🍵</span>
+      <h4>围炉煮茶 — 把时间煮进茶汤</h4>
+      <p>室内雅致茶室搭配江畔草坪煮茶区，全套茶具已备好。三五老友，一壶老茶，看江水东流，聊半生过往。</p>
+    </div>
+    <div class="card">
+      <span class="emoji">🏛️</span>
+      <h4>明清古村探访 — 穿越600年</h4>
+      <p>45处69幢明清古建筑群，"上七巷下三闸"古街巷，镇江楼遗址、皇姑坟……一脚踏进明朝，青砖黛瓦皆是故事。</p>
+    </div>
+    <div class="card">
+      <span class="emoji">🌅</span>
+      <h4>360°江景观景台 — 落日即大片</h4>
+      <p>楼顶无遮挡全景视野，黄昏时分邕江源头镀上金边，随手一拍就是朋友圈点赞收割机。</p>
+    </div>
+    <div class="card">
+      <span class="emoji">🖌️</span>
+      <h4>宋式美学十雅 — 做一回雅士</h4>
+      <p>听雨、赏画、侯月、焚香、拾花、探幽、对弈、抚琴、酌酒、品茗。十件雅事，择二三而为，便是神仙日子。</p>
+    </div>
+    <div class="card">
+      <span class="emoji">🍲</span>
+      <h4>农家私宴 — 舌尖上的原乡味</h4>
+      <p>散养土鸡、邕江江鲜、当季时蔬，稻田江景餐厅1300㎡古建中享用。不是米其林，却比米其林更懂中国胃。</p>
+    </div>
+    <div class="card">
+      <span class="emoji">🚶</span>
+      <h4>田园慢步 — 200亩天然氧吧</h4>
+      <p>春油菜花、夏荷塘、秋稻田，四季轮转的田园画卷。走一圈下来，肺里的城市尘埃全被置换干净。</p>
+    </div>
+    <div class="card">
+      <span class="emoji">🍷</span>
+      <h4>孤独酒吧 · 落日微醺</h4>
+      <p>一线江景清吧，树间雅座临江而坐。一杯特调配落日，微醺不醉刚刚好。所谓退休生活，不过如此。</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 亲子 ============ -->
+<div class="panel family" id="panel1">
+  <div class="intro">
+    <div class="icon-row">🌈</div>
+    <h2>亲子时光 · 大自然是最好的课堂</h2>
+    <div class="hook">给孩子一片没有天花板的童年。在稻田里奔跑、在江边找螃蟹、在星空下听故事——这些才是童年该有的样子。</div>
+  </div>
+  <div class="highlight">亲子彩蛋：一次性预订4间以上客房，赠送田园采摘体验 + 2小时专业旅行跟拍，把一家人的笑容印成永恒</div>
+  <div class="cards">
+    <div class="card">
+      <span class="emoji">🍓</span>
+      <h4>生态果蔬采摘 — 接接地气</h4>
+      <p>自营采摘园里的草莓、西瓜、火龙果、番薯，还有香葱香菜……孩子第一次知道"原来草莓不是长在超市货架上的"。</p>
+    </div>
+    <div class="card">
+      <span class="emoji">🌾</span>
+      <h4>农耕研学 — "游"+"学"融合</h4>
+      <p>水稻插秧、南瓜生长、火龙果开花……跟着农人下地，一节生动的自然课胜过十节补习班。</p>
+    </div>
+    <div class="card">
+      <span class="emoji">🏊</span>
+      <h4>临稻田泳池 — 泡在风景里</h4>
+      <p>直面无边稻田和邕江的露天泳池，夏天专属的水上乐园。孩子在池里扑腾，你在躺椅上喝冰饮，各得其乐。</p>
+    </div>
+    <div class="card">
+      <span class="emoji">⛴️</span>
+      <h4>古法轮渡 — 坐船才能到的秘境</h4>
+      <p>进村的唯一方式就是坐轮渡！汽车电动车一起上渡船，孩子趴在船舷看江水，兴奋得比到了迪士尼还激动。</p>
+    </div>
+    <div class="card">
+      <span class="emoji">🌻</span>
+      <h4>稻田花海 — 闯入油画世界</h4>
+      <p>春季油菜花金黄铺地、夏日荷塘接天莲叶、秋季稻浪翻滚。专属观景平台，全家的年度颜值担当照片都在这里诞生。</p>
+    </div>
+    <div class="card">
+      <span class="emoji">🔥</span>
+      <h4>户外烧烤 + 窑鸡 — 烟火气拉满</h4>
+      <p>江畔专属烧烤区，固定烤台、遮阳棚、休闲桌椅全配齐。爸爸负责烤，妈妈负责拍，孩子负责"哇——"。</p>
+    </div>
+    <div class="card">
+      <span class="emoji">🎬</span>
+      <h4>江畔露天电影 — 星空下的电影院</h4>
+      <p>千平整草坪上，夜幕降临后架起幕布。江风、虫鸣、星空作伴，《狮子王》比在电影院里好看一百倍。</p>
+    </div>
+    <div class="card">
+      <span class="emoji">🎨</span>
+      <h4>非遗工坊 — 小手传承大文化</h4>
+      <p>壮族织锦、邕州陶艺体验。孩子亲手做一件陶器带回家，比任何玩具都有意义。</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 团建 ============ -->
+<div class="panel team" id="panel2">
+  <div class="intro">
+    <div class="icon-row">🔥</div>
+    <h2>团建狂欢 · 把团队焊在一起</h2>
+    <div class="hook">不是在会议室里喊口号，而是在稻田里放烟花、在江边烤全羊、在篝火旁喊出年度目标。这样的团建，没人会请假。</div>
+  </div>
+  <div class="highlight">包场福利：13间客房整栋包场4800-6800元/晚，配套全场设施 + 私宴定制。年会、季度冲刺、周年庆一站搞定</div>
+  <div class="cards">
+    <div class="card">
+      <span class="emoji">🎤</span>
+      <h4>独立KTV大包厢 — 人均麦霸</h4>
+      <p>专业音响+智能点歌+氛围灯光，20人以上超大包厢配舞台。从《朋友》到《孤勇者》，一嗓子把KPI压力全吼出去。</p>
+    </div>
+    <div class="card">
+      <span class="emoji">🀄</span>
+      <h4>电动棋牌室 — 智力对决不限量</h4>
+      <p>多间独立棋牌室，全自动麻将机+茶歇台。谁说团建不能"国粹"一下？这才是广西团建的灵魂项目。</p>
+    </div>
+    <div class="card">
+      <span class="emoji">🧩</span>
+      <h4>江畔草坪拓展 — 真正的"破冰"</h4>
+      <p>超大平整草坪 + 成熟教练团队，素质拓展游戏定制。信任背摔、盲人方阵……草地的柔软会接住每一次勇敢。</p>
+    </div>
+    <div class="card">
+      <span class="emoji">🎆</span>
+      <h4>稻田烟花派对 — 炸裂的仪式感</h4>
+      <p>稻田间点燃烟花，夜空中绽放的是团队的年度战报。每个部门来一发，许愿明年的KPI像烟花一样往上冲。</p>
+    </div>
+    <div class="card">
+      <span class="emoji">🔥</span>
+      <h4>篝火晚会 — 围火夜话</h4>
+      <p>千平整坪上燃起篝火，大家围坐一圈，喝啤酒、唱歌、讲真心话。很多团队的裂痕，是被篝火烤化的。</p>
+    </div>
+    <div class="card">
+      <span class="emoji">🍖</span>
+      <h4>烤全羊盛宴 — 征服味蕾</h4>
+      <p>孤独酒吧特供烤全羊、烤土鸡、烤土鸭，搭配江畔烧烤区自助烧烤。一只羊下去，团队凝聚力肉眼可见地提升。</p>
+    </div>
+    <div class="card">
+      <span class="emoji">🚁</span>
+      <h4>无人机体验 — 上帝视角看三江</h4>
+      <p>专业设备+安全教学SOP，从空中俯瞰左江右江汇流奇观。拍一段团建航拍大片，发到公司群里，其他部门羡慕哭。</p>
+    </div>
+    <div class="card">
+      <span class="emoji">🏛️</span>
+      <h4>多功能会议室 — 边开会边度假</h4>
+      <p>高清投影+专业音响，20-50人容量。上午在江景会议室脑暴年度战略，下午跳进泳池庆祝。这才叫"工作生活平衡"。</p>
+    </div>
+    <div class="card">
+      <span class="emoji">🎉</span>
+      <h4>孤独酒吧轰趴 — 深夜不散场</h4>
+      <p>包场江景清吧，特调鸡尾酒不限量。生日会、周年庆、入职周年……每一个值得庆祝的日子，都应该有江水见证。</p>
+    </div>
+    <div class="card">
+      <span class="emoji">🍽️</span>
+      <h4>稻田餐厅 · 团餐定制</h4>
+      <p>1300㎡古建江景餐厅，799元/桌起，白切土鸡、柠檬鸭、清蒸罗非鱼……吃好才能干好，这个道理亘古不变。</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 休闲度假 ============ -->
+<div class="panel leisure" id="panel3">
+  <div class="intro">
+    <div class="icon-row">🌿</div>
+    <h2>休闲度假 · 把周末过成诗</h2>
+    <div class="hook">没有KPI、没有闹钟、没有"带孩子"。给自己48小时，在三江口把"活着"切换成"生活"。</div>
+  </div>
+  <div class="highlight">蜜月彩蛋：预订隐江/隐畔江景套房，加赠落日双人下午茶 + 1小时旅行跟拍。求婚可定制稻田烟花专场，成功率目测翻倍</div>
+  <div class="cards">
+    <div class="card">
+      <span class="emoji">⛺</span>
+      <h4>江畔野奢露营 · 天幕下午茶</h4>
+      <p>天幕+蛋卷桌+克米特椅全套就位，你只需带人。江风拂面，手冲咖啡配甜点，朋友圈文案自动生成：「今日营业中」。</p>
+    </div>
+    <div class="card">
+      <span class="emoji">🍷</span>
+      <h4>孤独酒吧 · 落日微醺</h4>
+      <p>一线江景清吧，树间雅座临江而坐。从金黄落日坐到满天繁星，一杯Mojito配江风，是都市人最奢侈的奢侈。</p>
+    </div>
+    <div class="card">
+      <span class="emoji">🏊</span>
+      <h4>临稻田无边泳池 · 泡在画里</h4>
+      <p>直面稻田和邕江的露天泳池，夏日限定。浮在泳池边缘看稻田翻浪，这种"躺平"，躺得高级。</p>
+    </div>
+    <div class="card">
+      <span class="emoji">🌻</span>
+      <h4>稻田花海打卡 · 出片率100%</h4>
+      <p>春油菜花金黄、夏荷塘接天、秋稻浪翻滚。专属观景平台+花海栈道，随手拍都是小红书爆款封面。</p>
+    </div>
+    <div class="card">
+      <span class="emoji">📸</span>
+      <h4>旅行跟拍服务 · 把回忆印成画</h4>
+      <p>专业摄影师驻场，2小时跟拍，100+底片全送。情侣照、闺蜜照、单人写真——不是自拍杆能比的质感。</p>
+    </div>
+    <div class="card">
+      <span class="emoji">🍲</span>
+      <h4>稻田私宴 · 一鱼八吃</h4>
+      <p>1300㎡古建江景餐厅，邕江鲜鱼现捞现做：椒盐鱼骨、鱼生刺身、鱼头豆腐汤……一条鱼的八种人生，都在舌尖上。</p>
+    </div>
+    <div class="card">
+      <span class="emoji">🍵</span>
+      <h4>围炉冰茶 · 夏日限定CP</h4>
+      <p>冬天围炉煮茶，夏天围炉冰茶——冷泡龙井+冰镇荔枝+仙气干冰，视觉和味觉双重降温。小红书爆款，随手一拍就是十万+。</p>
+    </div>
+    <div class="card">
+      <span class="emoji">🌅</span>
+      <h4>360°江景观景台 · 落日收藏家</h4>
+      <p>楼顶无遮挡全景视野，三江汇流尽收眼底。每天17:00-18:30是「金色半小时」，建议提前10分钟抢占C位。</p>
+    </div>
+    <div class="card">
+      <span class="emoji">🖌️</span>
+      <h4>宋式美学体验 · 做半日雅士</h4>
+      <p>听雨、赏画、侯月、焚香、拾花、探幽、对弈、抚琴、酌酒、品茗。十雅择三，穿汉服出片，朋友圈文案都已帮你写好。</p>
+    </div>
+    <div class="card">
+      <span class="emoji">🎆</span>
+      <h4>稻田烟花 · 专属浪漫定制</h4>
+      <p>稻田里为你点燃一场烟火。求婚、纪念日、生日惊喜——烟火升空那一刻，TA的眼泪比烟花还亮。</p>
+    </div>
+    <div class="card">
+      <span class="emoji">🔥</span>
+      <h4>户外烧烤+窑鸡 · 烟火气社交</h4>
+      <p>江畔固定烤台+遮阳棚+音响，食材免费代购。闺蜜局边烤边聊八卦，情侣局烤串配啤酒，比城里任何一家烧烤店都带感。</p>
+    </div>
+    <div class="card">
+      <span class="emoji">⛴️</span>
+      <h4>古法轮渡 · 仪式感拉满的抵达</h4>
+      <p>坐船才能到的民宿，全国也没几家。轮渡鸣笛离岸的一刻，自动进入度假模式。这种"与世隔绝"的仪式感，从登船就开始。</p>
+    </div>
+  </div>
+</div>
+
+<div class="footer">南宁 · 宋村 · 三江口隐江宿 &nbsp;|&nbsp; 邕江源头江畔度假民宿 &nbsp;|&nbsp; 古法轮渡入村，坐船才能抵达的世外桃源</div>
+
+<script>
+function switchPanel(i){
+  document.querySelectorAll('.panel').forEach((p,n)=>p.classList.toggle('active',n===i));
+  document.querySelectorAll('.tab').forEach((t,n)=>t.classList.toggle('active',n===i));
+}
+</script>
+</body>
+</html>
